@@ -25,6 +25,7 @@
         <module>torra-tudo-product</module>
         <module>torra-tudo-client</module>
         <module>discovery</module>
+        <module>torra-tudo-commons</module>
     </modules>
     <dependencies>
         <dependency>
