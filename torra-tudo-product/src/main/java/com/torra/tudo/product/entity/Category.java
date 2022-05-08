@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import java.util.UUID;
 
 @Entity
-@Table(schema = "product")
+@Table(schema = "product", name = "category")
 public class Category {
     @Id
     @GeneratedValue

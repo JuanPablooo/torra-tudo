@@ -6,7 +6,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Entity
-@Table( schema ="client", name = "client")
+@Table( schema ="product", name = "client")
 public class Client {
     public Client() {
     }

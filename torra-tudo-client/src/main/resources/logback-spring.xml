@@ -8,7 +8,7 @@
         <layout class="ch.qos.logback.classic.PatternLayout">
             <Pattern>
 <!--                %gray(%d{yyyy/MM/dd HH:mm:ss}) %highlight(%-5level) &#45;&#45; %magenta(trk=[%t]) [ %cyan(%-25.25logger{24})] %yellow(\(%file:%line\))  %boldWhite(%msg%n%throwable)-->
-                %gray(%d{yyyy/MM/dd HH:mm:ss}) %highlight(%-5level) -- %magenta(trk=[%t]) [ %cyan(%-25.25logger{24})] %yellow(\(%file:%line\))  %msg%n%throwable
+                %gray(%d{yyyy/MM/dd HH:mm:ss}) %highlight(%-5level) -- %magenta(trk=[%t]) [ %cyan(%-25.25logger{24})] %yellow(\(%file:%line\)) : %msg%n%throwable
             </Pattern>
         </layout>
     </appender>

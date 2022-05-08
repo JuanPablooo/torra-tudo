@@ -23,8 +23,9 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
+			<groupId>com.torra.tudo.microservices</groupId>
+			<artifactId>torra-tudo-data-commons</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 
