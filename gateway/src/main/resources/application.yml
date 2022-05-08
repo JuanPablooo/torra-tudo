@@ -1,0 +1,41 @@
+server:
+  port: 8080
+#  servlet:
+#    context-path: /gateway
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+logging:
+  level:
+    root: DEBUG
+
+spring:
+  application:
+    name: gateway
+  main:
+    web-application-type: REACTIVE
+  cloud:
+    gateway:
+      discovery:
+        locator:enabled: true
+      locator:
+        lower-case-service-id: true
+      routes:
+        - id: productModule
+          uri: lb://product
+          predicates:
+            - Method=GET,POST
+            - Path=/product/**
+        - id: clientModule
+          uri: lb://client
+          predicates:
+            - Method=GET,POST
+            - Path=/client/**
+
+
+
