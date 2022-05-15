@@ -29,6 +29,7 @@
         <module>discovery</module>
         <module>gateway</module>
         <module>torra-tudo-data-commons</module>
+        <module>spring-commons</module>
     </modules>
     <dependencies>
 
@@ -57,7 +58,7 @@
             <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
 
-<!--        dto -->
+        <!--      START DEPENDENCIES TO USE WITH DTO -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -69,7 +70,7 @@
             <artifactId>mapstruct</artifactId>
             <version>${mapstruct.version}</version>
         </dependency>
-
+        <!--      END DEPENDENCIES TO USE WITH DTO -->
     </dependencies>
     <dependencyManagement>
         <dependencies>
