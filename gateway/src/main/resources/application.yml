@@ -31,6 +31,8 @@ spring:
           predicates:
             - Method=GET,POST
             - Path=/product/**
+          filters:
+            - CustomFilter
         - id: clientModule
           uri: lb://client
           predicates:
