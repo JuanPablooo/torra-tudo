@@ -1,4 +1,4 @@
-package com.torra.tudo.commons.spring.config.constants;
+package com.torra.tudo.commons.spring.constants;
 
 public class CommonsSpringConstants {
     private CommonsSpringConstants(){}
