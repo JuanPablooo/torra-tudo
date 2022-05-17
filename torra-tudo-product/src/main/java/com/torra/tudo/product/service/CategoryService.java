@@ -10,7 +10,7 @@ import java.util.UUID;
 
 public interface CategoryService {
     CategoryDto createCategory(CategoryInputDto CategoryInputDto);
-    CategoryDto updateCategory(CategoryInputDto CategoryInputDto);
+    CategoryDto updateCategory(CategoryInputDto CategoryInputDto, UUID id);
     CategoryDto getCategoryById(UUID id);
     Page<CategoryDto> listCategoryPageable(Pageable pageable);
     List<CategoryDto> listCategoryNoPageable();
