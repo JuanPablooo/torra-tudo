@@ -8,7 +8,7 @@
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.torra.tudo.client</groupId>
+
 	<artifactId>torra-tudo-client</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>TorraTudoClient</name>

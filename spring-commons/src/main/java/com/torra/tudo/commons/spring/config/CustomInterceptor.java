@@ -14,6 +14,7 @@ public class CustomInterceptor implements HandlerInterceptor {
     private static final Logger LOGGER = LoggerFactory.getLogger(CustomInterceptor.class);
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        System.out.println(request.getInputStream());
         LOGGER.info("preHandle --- url:[{}], method:[{}]", request.getRequestURI(), request.getMethod());
         return HandlerInterceptor.super.preHandle(request, response, handler);
     }

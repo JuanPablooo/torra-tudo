@@ -9,7 +9,7 @@
 		<relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
 	</parent>
 
-	<groupId>com.torra.tudo.gateway</groupId>
+
 	<artifactId>torra-tudo-gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>gateway</name>
