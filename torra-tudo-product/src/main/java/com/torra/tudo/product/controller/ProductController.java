@@ -24,6 +24,6 @@ public class ProductController {
         System.out.println("agr foi um print +:"+ properties.getUrlTest());
         System.out.println("agr foi um print2 ");
         System.out.println("agr foi um print3 ");
-        return "tudo certo3";
+        return properties.getUrlTest();
     }
 }

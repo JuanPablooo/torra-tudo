@@ -30,6 +30,8 @@
         <module>gateway</module>
         <module>torra-tudo-data-commons</module>
         <module>spring-commons</module>
+        <module>torra-tudo-config-server</module>
+        <module>auth</module>
     </modules>
     <dependencies>
 
