@@ -38,6 +38,7 @@
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
+<!--		ACTUATOR CONFIG STARTER-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
@@ -46,6 +47,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
+<!--		ACTUATOR CONFIG END-->
 	</dependencies>
 
 	<build>

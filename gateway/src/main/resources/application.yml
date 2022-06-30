@@ -1,7 +1,7 @@
 server:
   port: 8080
-#  servlet:
-#    context-path: /gateway
+  servlet:
+    context-path: /gateway
 eureka:
   instance:
     prefer-ip-address: true
@@ -13,13 +13,24 @@ eureka:
 logging:
   level:
     root: DEBUG
+management:
+  security:
+    enable: false
+  endpoints:
+    web:
+      exposure:
+        include: '*'
 
 spring:
+  config:
+    import: optional:configserver:http://localhost:8099
   application:
     name: gateway
   main:
     web-application-type: REACTIVE
   cloud:
+    config:
+      uri: http://localhost:8099
     gateway:
       discovery:
         locator:enabled: true
@@ -29,15 +40,13 @@ spring:
         - id: productModule
           uri: lb://product
           predicates:
-            - Method=GET,POST
-            - Path=/product/**
+            - Path=${server.servlet.context-path}/product/**
           filters:
+            - StripPrefix=1
             - CustomFilter
         - id: clientModule
           uri: lb://client
           predicates:
-            - Method=GET,POST
-            - Path=/client/**
-
-
-
+            - Path=${server.servlet.context-path}/client/**
+          filters:
+            - StripPrefix=1
