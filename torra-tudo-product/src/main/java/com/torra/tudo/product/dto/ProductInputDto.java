@@ -9,6 +9,7 @@ import lombok.ToString;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -18,5 +19,5 @@ import java.util.List;
 public class ProductInputDto {
     private String name;
     private BigDecimal value;
-    private List<Long> categoryIds = new ArrayList<>();
+    private List<UUID> categoryIds = new ArrayList<>();
 }

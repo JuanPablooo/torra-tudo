@@ -2,9 +2,11 @@ package com.torra.tudo.product.service.impl;
 
 import com.torra.tudo.product.dto.ProductDto;
 import com.torra.tudo.product.dto.ProductInputDto;
+import com.torra.tudo.product.entity.Category;
 import com.torra.tudo.product.entity.Product;
 import com.torra.tudo.product.mapper.ProductMapper;
 import com.torra.tudo.product.repository.ProductRepository;
+import com.torra.tudo.product.service.CategoryService;
 import com.torra.tudo.product.service.ProductService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,24 +16,28 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 @Service
 @Slf4j
 public class ProductServiceImpl implements ProductService {
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
+    private final CategoryService categoryService;
     @Autowired
-    public ProductServiceImpl (ProductRepository productRepository, ProductMapper productMapper) {
+    public ProductServiceImpl (ProductRepository productRepository, ProductMapper productMapper, CategoryService categoryService) {
         this.productRepository = productRepository;
         this.productMapper = productMapper;
+        this.categoryService = categoryService;
     }
 
     @Override
     public ProductDto createProduct(ProductInputDto productInputDto) {
         log.info("starter create product [{}]", productInputDto.getName());
         Product productToBeSave = productMapper.toProduct(productInputDto);
-        Product productSaved = productRepository.save(productToBeSave);
-        return productMapper.toProductDto(productSaved);
+        Set<Category> categoriesOfProduct = categoryService.findCategoriesByIds(productInputDto.getCategoryIds());
+        productToBeSave.setCategories(categoriesOfProduct);
+        return productMapper.toProductDto(productRepository.save(productToBeSave));
     }
 
     @Override
@@ -40,6 +46,8 @@ public class ProductServiceImpl implements ProductService {
         Product productToBeUpdate = findProductByIdOrThrow(productId);
         Product replaceProduct = productMapper.toProduct(productInputDto);
         replaceProduct.setId(productToBeUpdate.getId());
+        Set<Category> categoriesOfProduct = categoryService.findCategoriesByIds(productInputDto.getCategoryIds());
+        replaceProduct.setCategories(categoriesOfProduct);
         productRepository.save(replaceProduct);
         return productMapper.toProductDto(replaceProduct);
     }

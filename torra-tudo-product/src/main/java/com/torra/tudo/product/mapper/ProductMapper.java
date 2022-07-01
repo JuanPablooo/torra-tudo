@@ -9,6 +9,7 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public abstract class ProductMapper {
+    //TODO ignore category ids
     public abstract Product toProduct(ProductInputDto ProductInputDto);
 
     public abstract ProductDto toProductDto(Product Product);
