@@ -65,7 +65,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void deleteCategoryById(UUID id) {
         findOrThrowById(id);
-        deleteCategoryById(id);
+        categoryRepository.deleteById(id);
     }
     private Category findOrThrowById(UUID id){
         return categoryRepository.findById(id).orElseThrow();

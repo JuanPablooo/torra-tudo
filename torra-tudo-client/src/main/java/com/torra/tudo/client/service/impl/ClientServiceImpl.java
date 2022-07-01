@@ -32,9 +32,8 @@ public class ClientServiceImpl implements ClientService {
     public ClientDto createClient(ClientInputDto clientInputDto) {
         String value = clientInputDto.getDocumentNumber();
         log.info("create client by documentNumber[{}]", value);
-        if(log.isDebugEnabled()){
-            log.debug("create user by ClientInputDto[{}]", clientInputDto);
-        }
+        log.debug("create user by ClientInputDto[{}]", clientInputDto);
+
         Client clientToBeSaved = clientMapper.toClient(clientInputDto);
         Client clientSaved = clientRepository.save(clientToBeSaved);
         return clientMapper.toClientDto(clientSaved);

@@ -10,10 +10,10 @@ import java.util.UUID;
 
 public interface ProductService {
     ProductDto createProduct(ProductInputDto productInputDto);
-    ProductDto updateProduct(ProductInputDto productInputDto);
-    ProductDto getProductById(UUID id);
+    ProductDto updateProduct(ProductInputDto productInputDto, UUID productId) throws ClassNotFoundException;
+    ProductDto getProductById(UUID id) throws ClassNotFoundException;
     Page<ProductDto> listProductPageable(Pageable pageable);
     List<ProductDto> listProductNoPageable();
-    void deleteProductById(UUID id);
+    void deleteProductById(UUID id) throws ClassNotFoundException;
 
 }
