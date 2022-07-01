@@ -36,7 +36,7 @@ public class ProductController {
         return productService.createProduct(productInputDto);
     }
     @GetMapping("/{productId}")
-    public ProductDto findById(@PathVariable("productId") UUID productId) {
+    public ProductDto findById(@PathVariable("productId") UUID productId) throws ClassNotFoundException {
         return productService.getProductById(productId);
     }
     @GetMapping
@@ -49,7 +49,7 @@ public class ProductController {
     }
 
     @PutMapping("/{productId}")
-    public ProductDto updateProduct(@PathVariable("productId") UUID productId, @RequestBody ProductInputDto productInputDto) {
+    public ProductDto updateProduct(@PathVariable("productId") UUID productId, @RequestBody ProductInputDto productInputDto) throws ClassNotFoundException {
         return productService.updateProduct(productInputDto, productId);
     }
 
