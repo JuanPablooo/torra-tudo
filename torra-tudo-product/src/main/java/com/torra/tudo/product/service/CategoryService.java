@@ -11,8 +11,8 @@ import java.util.Set;
 import java.util.UUID;
 
 public interface CategoryService {
-    CategoryDto createCategory(CategoryInputDto CategoryInputDto);
-    CategoryDto updateCategory(CategoryInputDto CategoryInputDto, UUID id) throws ClassNotFoundException;
+    CategoryDto createCategory(CategoryInputDto categoryInputDto);
+    CategoryDto updateCategory(CategoryInputDto categoryInputDto, UUID id) throws ClassNotFoundException;
     CategoryDto getCategoryById(UUID id) throws ClassNotFoundException;
     Page<CategoryDto> listCategoryPageable(Pageable pageable);
     List<CategoryDto> listCategoryNoPageable();

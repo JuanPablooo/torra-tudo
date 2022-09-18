@@ -9,9 +9,10 @@ import java.util.UUID;
 @Entity
 @Table(schema = "product", name = "category")
 public class Category {
-    @Id
+
     @GeneratedValue
     private UUID id;
+
     private String name;
 
     public Category() {

@@ -5,21 +5,9 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    image: openjdk:11
+    image: custom-jdk-11
     ports:
-      - "8080:8080"
-    links:
-      - db
+      - "8082:8082"
     environment:
       - ADDITIONAL_OPT=-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005 -Xmx1G -Xms128m -XX:MaxMetaspaceSize=128m
       - PROFILE=dev
-
-  db:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: 123
-    ports:
-      - "5432:5432"
-    volumes:
-      - ./docker/db:/var/lib/postgresql/data
