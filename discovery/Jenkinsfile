@@ -1,0 +1,43 @@
+def project = "discovery"
+def docker_hub_profile = "juanpablooo"
+
+pipeline {
+    agent any
+    tools {
+        maven "maven"
+    }
+    stages {
+        stage("Git clone") {
+            steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JuanPablooo/torra-tudo']]])
+            }
+        }
+        stage("Maven Test") {
+            steps {
+                sh "mvn test -f ${project} -U"
+            }
+        }
+        stage("Maven Build") {
+            steps {
+                sh "mvn clean install -Dmaven.test.skip=true -f ${project} -U"
+            }
+        }
+       stage("Docker Build") {
+            steps{
+                script {
+                    sh "docker build -t ${docker_hub_profile}/${project} ./${project}/"
+                }
+            }
+        }
+       stage("Docker Push") {
+            steps{
+                script {
+                    withCredentials([string(credentialsId: 'dockerhubpwp', variable: 'dockerhubpwp')]) {
+                        sh "docker login -u ${docker_hub_profile} -p ${dockerhubpwp}"
+                        sh "docker push ${docker_hub_profile}/${project}"
+                    }
+                }
+            }
+        }
+    }
+}
