@@ -2,8 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: discovery
-#   labels:
-#     app: discovery
+  labels:
+   app: discovery
 spec:
   replicas: 1
   selector:
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: torra-discovery
-          image: 'juanpablooo/torra-discovery:1.0.0'
+          image: 'juanpablooo/torra-discovery'
           ports:
             #            - port: 8082
             - containerPort:  8081
