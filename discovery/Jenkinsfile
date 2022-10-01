@@ -30,6 +30,7 @@ pipeline {
             steps{
                 script {
                     sh "docker build -t ${docker_hub_profile}/${project} ./${project}/"
+                    sh "docker tag ${docker_hub_profile}/${project}  ${docker_hub_profile}/${project}:1.0.0"
                 }
             }
         }
@@ -38,7 +39,7 @@ pipeline {
                 script {
                     withCredentials([string(credentialsId: 'dockerhubpwp', variable: 'dockerhubpwp')]) {
                         sh "docker login -u ${docker_hub_profile} -p ${dockerhubpwp}"
-                        sh "docker push ${docker_hub_profile}/${project}"
+                        sh "docker push ${docker_hub_profile}/${project}:1.0.0"
                     }
                 }
             }
