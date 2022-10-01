@@ -1,5 +1,6 @@
 def project = "discovery"
 def docker_hub_profile = "juanpablooo"
+def branch = "develop"
 
 pipeline {
     agent any
@@ -9,7 +10,7 @@ pipeline {
     stages {
         stage("Git clone") {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/develop']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JuanPablooo/torra-tudo']]])
+                checkout([$class: 'GitSCM', branches: [[name: "*/${branch}"]], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JuanPablooo/torra-tudo']]])
             }
         }
         stage("Maven Test") {
@@ -17,11 +18,14 @@ pipeline {
                 sh "mvn test -f ${project} -U"
             }
         }
+
         stage("Maven Build") {
             steps {
                 sh "mvn clean install -Dmaven.test.skip=true -f ${project} -U"
             }
+
         }
+
        stage("Docker Build") {
             steps{
                 script {
@@ -39,5 +43,18 @@ pipeline {
                 }
             }
         }
+        stage("K8S Deploy") {
+            steps {
+                script{
+                    sh "pwd ls"
+                    dir("./${project}/k8s") {
+                        kubernetesDeploy (configs: 'deployment.yaml', kubeconfigId: 'k8sconfigpwd')
+                    }
+
+                }
+            }
+        }
+
     }
+
 }
