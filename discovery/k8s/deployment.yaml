@@ -29,8 +29,10 @@ metadata: # Metadata of the resource kind we are creating
 spec:
   selector:
     app: discovery-deployment
+  type: LoadBalancer
   ports:
     - protocol: "TCP"
       port: 8081 # The port that the service is running on in the cluster
       targetPort: 8081 # The port exposed by the service
-  type: NodePort
+      nodePort: 30000
+#  type: NodePort
