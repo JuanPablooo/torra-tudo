@@ -53,6 +53,7 @@ pipeline {
                     dir("./${project}/k8s") {
                         sh "echo replacing tag [ ${tag} ] image ..."
                         sh "sed -i 's,VERSION_IMAGE_TO_BE_REPLACED,${tag},' ./deployment.yaml"
+                        sh "cat ./deployment.yaml"
                         kubernetesDeploy (configs: 'deployment.yaml', kubeconfigId: 'k8sconfigpwd')
                     }
 
