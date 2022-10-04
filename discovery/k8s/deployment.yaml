@@ -17,15 +17,14 @@ spec:
       containers:
         - name: torra-discovery
           image: 'juanpablooo/discovery:VERSION_IMAGE_TO_BE_REPLACED'
-          imagePullPolicy: Never
           ports:
 #            - port: 8082
             - containerPort:  8081
 
 ---
-apiVersion: v1 # Kubernetes API version
-kind: Service # Kubernetes resource kind we are creating
-metadata: # Metadata of the resource kind we are creating
+apiVersion: v1
+kind: Service
+metadata:
   name: discovery-service
 spec:
   selector:
