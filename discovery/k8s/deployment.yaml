@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: torra-discovery
-          image: 'juanpablooo/discovery:latest'
+          image: 'juanpablooo/discovery:VERSION_IMAGE_TO_BE_REPLACED'
           imagePullPolicy: Never
           ports:
 #            - port: 8082

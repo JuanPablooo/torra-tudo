@@ -1,6 +1,7 @@
 def project = "discovery"
 def docker_hub_profile = "juanpablooo"
 def branch = "develop"
+def tag = env.BUILD_ID
 
 pipeline {
     agent any
@@ -29,8 +30,9 @@ pipeline {
        stage("Docker Build") {
             steps{
                 script {
-                    sh "docker build -t ${docker_hub_profile}/${project} ./${project}/"
-                    sh "docker tag ${docker_hub_profile}/${project}  ${docker_hub_profile}/${project}:1.0.0"
+                    sh "docker build -t ${project} ./${project}/"
+                    sh "docker tag ${project} ${docker_hub_profile}/${project}:${tag}"
+                    sh "echo imagename: ${docker_hub_profile}/${project}:${tag}"
                 }
             }
         }
@@ -39,7 +41,7 @@ pipeline {
                 script {
                     withCredentials([string(credentialsId: 'dockerhubpwp', variable: 'dockerhubpwp')]) {
                         sh "docker login -u ${docker_hub_profile} -p ${dockerhubpwp}"
-                        sh "docker push ${docker_hub_profile}/${project}:1.0.0"
+                        sh "docker push ${docker_hub_profile}/${project}:${tag}"
                     }
                 }
             }
@@ -49,6 +51,8 @@ pipeline {
                 script{
                     sh "pwd ls"
                     dir("./${project}/k8s") {
+                        sh "echo replacing tag [ ${tag} ] image ..."
+                        sh "sed -i 's,VERSION_IMAGE_TO_BE_REPLACED,${tag},' ./deployment.yaml"
                         kubernetesDeploy (configs: 'deployment.yaml', kubeconfigId: 'k8sconfigpwd')
                     }
 
