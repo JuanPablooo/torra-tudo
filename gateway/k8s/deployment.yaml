@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: discovery-deployment
+  name: gateway-deployment
   labels:
-   app: discovery-deployment
+   app: gateway-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: discovery-deployment
+      app: gateway-deployment
   template:
     metadata:
       labels:
-        app: discovery-deployment
+        app: gateway-deployment
     spec:
       containers:
-        - name: torra-discovery
-          image: 'juanpablooo/torra-discovery:VERSION_IMAGE_TO_BE_REPLACED'
+        - name: torra-gateway
+          image: 'juanpablooo/torra-gateway:VERSION_IMAGE_TO_BE_REPLACED'
           ports:
 #            - port: 8082
             - containerPort:  8081
@@ -25,10 +25,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: discovery-service
+  name: gateway-service
 spec:
   selector:
-    app: discovery-deployment
+    app: gateway-deployment
   type: LoadBalancer
   ports:
     - protocol: "TCP"

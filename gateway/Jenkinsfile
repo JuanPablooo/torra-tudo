@@ -1,4 +1,4 @@
-def project = "discovery"
+def project = "gateway"
 def docker_hub_profile = "juanpablooo"
 def branch = "develop"
 def tag = env.BUILD_ID
