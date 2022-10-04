@@ -19,7 +19,7 @@ spec:
           image: 'juanpablooo/torra-gateway:VERSION_IMAGE_TO_BE_REPLACED'
           ports:
 #            - port: 8082
-            - containerPort:  8081
+            - containerPort:  8080
 
 ---
 apiVersion: v1
@@ -32,9 +32,9 @@ spec:
   type: LoadBalancer
   ports:
     - protocol: "TCP"
-      port: 8081 # The port that the service is running on in the cluster
-      targetPort: 8081 # The port exposed by the service
-      nodePort: 30000
+      port: 8080 # The port that the service is running on in the cluster
+      targetPort: 8080 # The port exposed by the service
+      nodePort: 30001
 #  type: NodePort
 
 #---
