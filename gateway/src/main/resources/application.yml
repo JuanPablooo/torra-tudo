@@ -9,7 +9,7 @@ eureka:
     service-url:
 #      defaultZone: http://localhost:8081/eureka/
 #      defaultZone: ${discovery.url}/
-      defaultZone: discovery-service/
+      defaultZone: http://discovery-service/
     fetch-registry: true
     register-with-eureka: true
 logging:
