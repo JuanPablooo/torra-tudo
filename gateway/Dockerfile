@@ -1,7 +1,7 @@
 FROM openjdk:11
 LABEL matainer="juanpablopereiragomes@hotmail.com"
 
-EXPOSE 8088
+EXPOSE 8080
 
 WORKDIR /opt/torra/gateway
 
