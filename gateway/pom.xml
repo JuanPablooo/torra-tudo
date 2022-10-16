@@ -17,6 +17,9 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<javax.activation>1.1.1</javax.activation>
+		<jaxb.api.version>2.3.1</jaxb.api.version>
+		<jaxb.runtime.version>2.3.2</jaxb.runtime.version>
 <!--		<spring-cloud.version>2021.0.2</spring-cloud.version>-->
 	</properties>
 
