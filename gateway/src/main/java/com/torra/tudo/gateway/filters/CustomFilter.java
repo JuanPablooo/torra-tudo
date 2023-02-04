@@ -3,6 +3,7 @@ package com.torra.tudo.gateway.filters;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.gateway.filter.GatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
+import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 
 import reactor.core.publisher.Mono;
@@ -21,7 +22,9 @@ public class CustomFilter extends AbstractGatewayFilterFactory<CustomFilter.Conf
         //Custom Pre Filter. Suppose we can extract JWT and perform Authentication
         System.out.println("apply filter");
         return (exchange, chain) -> {
-            System.out.println("First pre filter" + exchange.getRequest());
+            ServerHttpRequest request = exchange.getRequest();
+            log.info("filter request uri[{}], path[{}] ", request.getURI(), request.getPath());
+            System.out.println("First pre filter" + request);
             //Custom Post Filter.Suppose we can call error response handler based on error code.
             return chain.filter(exchange).then(Mono.fromRunnable(() -> {
                 System.out.println("First post filter");
