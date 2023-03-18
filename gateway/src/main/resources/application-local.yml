@@ -1,0 +1,52 @@
+server:
+  port: 8088
+  servlet:
+    context-path: /gateway
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://localhost:8081/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+logging:
+  level:
+    root: DEBUG
+management:
+  security:
+    enable: false
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  config:
+    import: optional:configserver:http://localhost:8099
+  application:
+    name: gateway
+  main:
+    web-application-type: REACTIVE
+  cloud:
+    config:
+      uri: http://localhost:8099
+    gateway:
+      discovery:
+        locator:enabled: true
+      locator:
+        lower-case-service-id: true
+      routes:
+        - id: productModule
+          uri: lb://product
+          predicates:
+            - Path=${server.servlet.context-path}/product/**
+          filters:
+            - StripPrefix=1
+            - CustomFilter
+        - id: clientModule
+          uri: lb://client
+          predicates:
+            - Path=${server.servlet.context-path}/client/**
+          filters:
+            - StripPrefix=1

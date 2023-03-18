@@ -20,7 +20,7 @@ spec:
           ports:
 #            - port: 8082
             - containerPort:  8080
-
+#SERVICE
 ---
 apiVersion: v1
 kind: Service
@@ -38,6 +38,24 @@ spec:
       targetPort: 8080 # The port exposed by the service
 #      nodePort: 30000
 #  type: NodePort
+
+#INGRESS
+#---
+#apiVersion: networking.k8s.io/v1beta1
+#kind: Ingress
+#metadata:
+#  name: discovery-ingress
+#spec:
+#  rules:
+#  - host: discovery.com
+#    http:
+#      paths:
+#      - backend:
+#          serviceName: discovery-service
+#          servicePort: 8081
+
+
+
 
 #---
 #apiVersion: autoscaling/v1

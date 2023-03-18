@@ -1,22 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: client
-#   labels:
-#     app: client
+  name: client-deployment
+  labels:
+   app: client-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: client
+      app: client-deployment
   template:
     metadata:
       labels:
-        app: client
+        app: client-deployment
     spec:
       containers:
         - name: torra-client
-          image: 'juanpablooo/torra-client:1.0.0'
+          image: 'juanpablooo/torra-client:VERSION_IMAGE_TO_BE_REPLACED'
           ports:
-            #            - port: 8082
-            - containerPort:  8083
+            #  port: 8082
+            - containerPort:  8080
+                         
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-service
+spec:
+  selector:
+    app: client-deployment
+  type: ClusterIP
+  ports:
+    - protocol: "TCP"
+      port: 8082 # The port that the service is running on in the cluster
+      targetPort: 8080 # The port exposed by the service              
