@@ -11,7 +11,7 @@
 
 	<artifactId>torra-tudo-client</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>TorraTudoClient</name>
+	<name>client</name>
 	<description>project to manager clients</description>
 
 	<properties>
