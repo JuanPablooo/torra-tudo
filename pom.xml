@@ -24,7 +24,7 @@
     <modules>
         <module>torra-tudo-commons</module>
         <module>torra-tudo-product</module>
-        <module>torra-tudo-client</module>
+        <module>client</module>
 
         <module>discovery</module>
         <module>gateway</module>
