@@ -1,12 +1,14 @@
 def docker_hub_profile = "juanpablooo"
 def tag = env.BUILD_ID
+def project_name = "${project_name}"
+def branch = "${branch}"
 
 pipeline {
     agent any
-    parameters {
-        string defaultValue: 'develop', name: 'branch'
-        string  name: 'project_name'
-    }
+//     parameters {
+//         string defaultValue: 'develop', name: 'branch'
+//         string  name: 'project_name'
+//     }
     tools {
         maven "maven"
     }
