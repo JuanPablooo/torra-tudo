@@ -5,10 +5,6 @@ def branch = "${branch}"
 
 pipeline {
     agent any
-//     parameters {
-//         string defaultValue: 'develop', name: 'branch'
-//         string  name: 'project_name'
-//     }
     tools {
         maven "maven"
     }
