@@ -17,13 +17,13 @@ pipeline {
         }
         stage("Maven Test") {
             steps {
-                sh "mvn -s mvn-settings.xml test -f ${project_name} -U"
+                sh "mvn test -f ${project_name} -U"
             }
         }
 
         stage("Maven Build") {
             steps {
-                sh "mvn -s mvn-settings.xml clean install -Dmaven.test.skip=true -f ${project_name} -U"
+                sh "mvn clean install -Dmaven.test.skip=true -f ${project_name} -U"
             }
 
         }
