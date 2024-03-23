@@ -8,30 +8,6 @@
 		<version>1.0.0-SNAPSHOT</version>
 		<relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
 	</parent>
-<!--	<repositories>-->
-<!--		<repository>-->
-<!--			<id>org.springframework.maven.release</id>-->
-<!--			<name>Spring Maven Release Repository</name>-->
-<!--			<url>http://repo.springsource.org/libs-release-local</url>-->
-<!--			<releases><enabled>true</enabled></releases>-->
-<!--			<snapshots><enabled>false</enabled></snapshots>-->
-<!--		</repository>-->
-<!--		&lt;!&ndash; For testing against latest Spring snapshots &ndash;&gt;-->
-<!--		<repository>-->
-<!--			<id>org.springframework.maven.snapshot</id>-->
-<!--			<name>Spring Maven Snapshot Repository</name>-->
-<!--			<url>http://repo.springsource.org/libs-snapshot-local</url>-->
-<!--			<releases><enabled>false</enabled></releases>-->
-<!--			<snapshots><enabled>true</enabled></snapshots>-->
-<!--		</repository>-->
-<!--		&lt;!&ndash; For developing against latest Spring milestones &ndash;&gt;-->
-<!--		<repository>-->
-<!--			<id>org.springframework.maven.milestone</id>-->
-<!--			<name>Spring Maven Milestone Repository</name>-->
-<!--			<url>http://repo.springsource.org/libs-milestone-local</url>-->
-<!--			<snapshots><enabled>false</enabled></snapshots>-->
-<!--		</repository>-->
-<!--	</repositories>-->
 
 	<artifactId>torra-tudo-config-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -39,7 +15,20 @@
 	<description>config server of microservices torra tudo</description>
 	<properties>
 		<java.version>17</java.version>
+		<nexus.url>http://172.28.128.231:8099/repository/</nexus.url>
 	</properties>
+
+	<distributionManagement>
+		<repository>
+			<id>torra-tudo-nexus-repository-release</id>
+			<url>${nexus.url}torra-tudo-nexus-repository-release/</url>
+		</repository>
+		<snapshotRepository>
+			<id>torra-tudo-nexus-repository-snapshot</id>
+			<url>${nexus.url}torra-tudo-nexus-repository-snapshot/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<dependencies>
 		<!--COMMONS TORRA TUDO		-->
 <!--		<dependency>-->
@@ -82,6 +71,10 @@
 					<source>${java.version}</source>
 					<target>${java.version}</target>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-deploy-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
