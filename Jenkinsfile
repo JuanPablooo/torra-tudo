@@ -15,8 +15,6 @@ pipeline {
                 sh "echo branch:[${branch}] tag:[${tag}] project_name:[${project_name}] "
                 sh "echo java -version"
                 sh "java -version"
-                sh "echo mvn version"
-                sh "mvn version"
                  sh "##############################################END-INFORMATIONS##############################################"
                 checkout([$class: 'GitSCM', branches: [[name: "*/${branch}"]], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JuanPablooo/torra-tudo']]])
             }
