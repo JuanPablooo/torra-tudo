@@ -6,7 +6,7 @@
 
     <artifactId>torra-tudo-spring-commons</artifactId>
     <groupId>com.torra.tudo.microservices</groupId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.3-SNAPSHOT</version>
 
     <properties>
         <java.version>17</java.version>
@@ -20,11 +20,13 @@
     </properties>
     <distributionManagement>
         <repository>
-            <id>torra-tudo-nexus-repository-release</id>
+            <id>nexus</id>
+            <name>torra-tudo-nexus-repository-release</name>
             <url>${nexus.url}torra-tudo-nexus-repository-release/</url>
         </repository>
         <snapshotRepository>
-            <id>torra-tudo-nexus-repository-snapshot</id>
+            <id>nexus</id>
+            <name>torra-tudo-nexus-repository-snapshot</name>
             <url>${nexus.url}torra-tudo-nexus-repository-snapshot/</url>
         </snapshotRepository>
     </distributionManagement>
