@@ -11,23 +11,32 @@ pipeline {
     stages {
         stage("Git clone") {
             steps {
-                sh "##############################################START-INFORMATIONS##############################################"
+                sh "##############################################START-GIT-CLONE##############################################"
+                sh "########START-INFORMATIONS########"
                 sh "echo branch:[${branch}] tag:[${tag}] project_name:[${project_name}] "
                 sh "echo java -version"
-                sh "java -version"
-                 sh "##############################################END-INFORMATIONS##############################################"
+                sh "cat ./settings.xml"
+                sh "########END-INFORMATIONS########"
                 checkout([$class: 'GitSCM', branches: [[name: "*/${branch}"]], extensions: [], userRemoteConfigs: [[url: 'https://github.com/JuanPablooo/torra-tudo']]])
+                sh "##############################################END-GIT-CLONE##############################################"
             }
         }
         stage("Maven Test") {
             steps {
-                sh "mvn test -f ${project_name} -U"
+                sh "##############################################START-MAVEN-TEST##############################################"
+                configFileProvider([configFile(fileId: 'settings-torra', variable: 'MAVEN_SETTINGS_XML')]) {
+                    sh "mvn test -f ${project_name} -U -s $MAVEN_SETTINGS_XML "
+                    // sh 'mvn -U --batch-mode -s $MAVEN_SETTINGS_XML clean install -P foo'
+                }
+                sh "##############################################END-MAVEN-TEST##############################################"
             }
         }
 
         stage("Maven Build") {
             steps {
-                sh "mvn clean install -Dmaven.test.skip=true -f ${project_name} -U"
+                sh "##############################################START-MAVEN-BUILD##############################################"
+                sh "mvn clean install -Dmaven.test.skip=true -f ${project_name} -U -s $MAVEN_SETTINGS_XML "
+                sh "##############################################END-MAVEN-BUILD##############################################"
             }
 
         }
@@ -35,25 +44,30 @@ pipeline {
        stage("Docker Build") {
             steps{
                 script {
+                    sh "##############################################START-DOCKER-BUILD##############################################"
                     sh "docker build -t ${project_name} ./${project_name}/"
                     sh "docker tag ${project_name} ${docker_hub_profile}/torra-${project_name}:${tag}"
                     sh "echo imagename: ${docker_hub_profile}/torra-${project_name}:${tag}"
+                    sh "##############################################END-DOCKER-BUILD##############################################"
                 }
             }
         }
        stage("Docker Push") {
             steps{
                 script {
+                    sh "##############################################START-DOCKER-PUSH##############################################"
                     withCredentials([string(credentialsId: 'dockerhubpwp', variable: 'dockerhubpwp')]) {
                         sh "docker login -u ${docker_hub_profile} -p ${dockerhubpwp}"
                         sh "docker push ${docker_hub_profile}/torra-${project_name}:${tag}"
                     }
+                    sh "##############################################END-DOCKER-PUSH##############################################"
                 }
             }
         }
         stage("K8S Deploy") {
             steps {
-                script{
+                script {
+                    sh "##############################################START-K8S-DEPLOY##############################################"
                     sh "pwd ls"
                     dir("./${project_name}/k8s") {
                         sh "echo replacing tag [ ${tag} ] image ..."
@@ -63,6 +77,7 @@ pipeline {
                             sh "kubectl apply -f ./deployment.yaml "
                         }
                     }
+                    sh "##############################################END-K8S-DEPLOY##############################################"
 
                 }
             }
