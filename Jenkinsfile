@@ -34,7 +34,10 @@ pipeline {
         stage("Maven Build") {
             steps {
                 sh "##############################################START-MAVEN-BUILD##############################################"
-                sh "mvn clean install -Dmaven.test.skip=true -f ${project_name} -U -s $MAVEN_SETTINGS_XML "
+                configFileProvider([configFile(fileId: 'settings-torra', variable: 'MAVEN_SETTINGS_XML')]) {
+                    sh "mvn clean install -Dmaven.test.skip=true -f ${project_name} -U -s $MAVEN_SETTINGS_XML "
+                }
+
                 sh "##############################################END-MAVEN-BUILD##############################################"
             }
 
