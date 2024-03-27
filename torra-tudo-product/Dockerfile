@@ -1,4 +1,4 @@
-FROM openjdk:11
+FROM openjdk:17-oracle
 LABEL matainer="juanpablopereiragomes@hotmail.com"
 
 WORKDIR /opt/torra

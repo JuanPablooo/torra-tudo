@@ -15,21 +15,35 @@
 	<description>project to manager products</description>
 
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<mapstruct.version>1.4.2.Final</mapstruct.version>
 		<lombok.version>1.18.4</lombok.version>
+		<nexus.url>http://172.28.128.231:8099/repository/</nexus.url>
 	</properties>
+
+	<distributionManagement>
+		<repository>
+			<id>nexus</id>
+			<name>torra-tudo-nexus-repository-release</name>
+			<url>${nexus.url}torra-tudo-nexus-repository-release/</url>
+		</repository>
+		<snapshotRepository>
+			<id>nexus</id>
+			<name>torra-tudo-nexus-repository-snapshot</name>
+			<url>${nexus.url}torra-tudo-nexus-repository-snapshot/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.torra.tudo.microservices</groupId>
 			<artifactId>torra-tudo-data-commons</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.torra.tudo.microservices</groupId>
 			<artifactId>torra-tudo-commons</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
 		<dependency>

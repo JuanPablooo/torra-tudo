@@ -3,7 +3,7 @@ package com.torra.commons.data.model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
+import org.jetbrains.annotations.NotNull;
 
 @Entity
 @Table(schema = "auth", name = "application-user")
