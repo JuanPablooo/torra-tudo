@@ -7,7 +7,7 @@ eureka:
     prefer-ip-address: true
   client:
     service-url:
-      defaultZone: http://localhost:8081/eureka/
+      defaultZone: http://torra-tudo-discovery-service:8081/eureka/
     fetch-registry: true
     register-with-eureka: true
 logging:
@@ -23,14 +23,14 @@ management:
 
 spring:
   config:
-    import: optional:configserver:http://localhost:8099
+    import: optional:configserver:http://torra-tudo-config-server-service:8083
   application:
     name: gateway
   main:
     web-application-type: REACTIVE
   cloud:
     config:
-      uri: http://localhost:8099
+      uri: http://torra-tudo-config-server-service:8083
     gateway:
       discovery:
         locator:enabled: true
