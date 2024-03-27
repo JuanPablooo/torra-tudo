@@ -33,7 +33,7 @@ spring:
     web-application-type: REACTIVE
   cloud:
     config:
-      uri: http://localhost:8099
+      uri: http://torra-tudo-config-server-service:8083
     gateway:
       discovery:
         locator:enabled: true
