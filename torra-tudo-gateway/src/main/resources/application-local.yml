@@ -23,14 +23,14 @@ management:
 
 spring:
   config:
-    import: optional:configserver:http://torra-tudo-config-server-service:8083
+    import: optional:configserver:http://localhost:8099
   application:
     name: gateway
   main:
     web-application-type: REACTIVE
   cloud:
     config:
-      uri: http://torra-tudo-config-server-service:8083
+      uri: http://localhost:8099
     gateway:
       discovery:
         locator:enabled: true

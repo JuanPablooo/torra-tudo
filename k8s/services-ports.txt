@@ -2,3 +2,4 @@ discovery-service : 8081
 client-service : 8082
 config-server: 8083
 gateway: 8088
+product : 8084

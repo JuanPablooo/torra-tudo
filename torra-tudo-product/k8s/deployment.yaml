@@ -1,22 +1,59 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: product
-#   labels:
-#     app: product
+  name: torra-tudo-product-deployment
+  labels:
+    app: torra-tudo-product-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: product
+      app: torra-tudo-product-deployment
   template:
     metadata:
       labels:
-        app: product
+        app: torra-tudo-product-deployment
     spec:
       containers:
-        - name: torra-product
-          image: 'juanpablooo/torra-product:1.0.0'
+        - name: torra-tudo-product
+          image: 'juanpablooo/torra-tudo-product:VERSION_IMAGE_TO_BE_REPLACED'
           ports:
-#            - port: 8082
-            - containerPort:  8082
+            #            - port: 8082
+            - containerPort:  8080
+          env:
+            - name: DISCOVERY_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: discovery-configmap
+                  key: discovery-url
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: torra-tudo-product-service
+spec:
+  selector:
+    app: torra-tudo-product-deployment
+  type: ClusterIP
+  ports:
+    - protocol: "TCP"
+      port: 8084 # The port that the service is running on in the cluster
+      targetPort: 8080 # The port exposed by the service
+#      nodePort: 30001
+#  type: NodePort
+
+#---
+#apiVersion: autoscaling/v1
+#kind: HorizontalPodAutoscaler
+#metadata:
+#  name: springboot-v1
+#  namespace: default
+#spec:
+#  maxReplicas: 3
+#  minReplicas: 1
+#  scaleTargetRef:
+#    apiVersion: apps/v1
+#    kind: Deployment
+#    name: springboot-v1
+#  targetCPUUtilizationPercentage: 70
