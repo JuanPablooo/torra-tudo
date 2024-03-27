@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: discovery-configmap
 data:
-  discovery-url: discovery-service
+  discovery-url: torra-tudo-discovery-service

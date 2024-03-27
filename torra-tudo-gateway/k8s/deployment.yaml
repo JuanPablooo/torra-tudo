@@ -20,13 +20,12 @@ spec:
           ports:
 #            - port: 8082
             - containerPort:  8080
-
-      env:
-        - name: DISCOVERY_URL
-          valueFrom:
-            configMapKeyRef:
-              name: discovery-configmap
-              key: discovery-url
+          env:
+            - name: DISCOVERY_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: discovery-configmap
+                  key: discovery-url
 
 ---
 apiVersion: v1
