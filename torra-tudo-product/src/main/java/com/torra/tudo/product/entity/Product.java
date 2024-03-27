@@ -15,8 +15,8 @@ public class Product {
     private UUID id;
     private String name;
     private BigDecimal value;
-    @OneToMany
-    private Set<Category> categories = new HashSet<>(0);
+//    @OneToMany
+//    private Set<Category> categories = new HashSet<>(0);
 
     public Product() {
     }
@@ -46,10 +46,11 @@ public class Product {
     }
 
     public Set<Category> getCategories() {
-        return categories;
+//        return categories;
+        return new HashSet<>(0);
     }
 
     public void setCategories(Set<Category> categories) {
-        this.categories = categories;
+//        this.categories = categories;
     }
 }

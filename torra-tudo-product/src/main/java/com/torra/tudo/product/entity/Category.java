@@ -4,16 +4,22 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.Date;
 import java.util.UUID;
 
 @Entity
 @Table(schema = "product", name = "category")
 public class Category {
 
+    @Id
     @GeneratedValue
     private UUID id;
 
     private String name;
+
+    private Date createAt;
+
+    private Date updateAt;
 
     public Category() {
     }
