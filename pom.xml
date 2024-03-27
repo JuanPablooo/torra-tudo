@@ -27,7 +27,7 @@
         <module>client</module>
 
         <module>torra-tudo-discovery</module>
-        <module>gateway</module>
+        <module>torra-tudo-gateway</module>
         <module>torra-tudo-data-commons</module>
         <module>spring-commons</module>
         <module>torra-tudo-config-server</module>

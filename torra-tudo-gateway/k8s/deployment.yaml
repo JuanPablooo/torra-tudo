@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: gateway-deployment
+  name: torra-tudo-gateway-deployment
   labels:
-   app: gateway-deployment
+   app: torra-tudo-gateway-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: gateway-deployment
+      app: torra-tudo-gateway-deployment
   template:
     metadata:
       labels:
-        app: gateway-deployment
+        app: torra-tudo-gateway-deployment
     spec:
       containers:
-        - name: torra-gateway
-          image: 'juanpablooo/torra-gateway:VERSION_IMAGE_TO_BE_REPLACED'
+        - name: torra-tudo-gateway
+          image: 'juanpablooo/torra-tudo-gateway:VERSION_IMAGE_TO_BE_REPLACED'
           ports:
 #            - port: 8082
             - containerPort:  8080
@@ -32,14 +32,14 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: gateway-service
+  name: torra-tudo-gateway-service
 spec:
   selector:
-    app: gateway-deployment
+    app: torra-tudo-gateway-deployment
   type: ClusterIP
   ports:
     - protocol: "TCP"
-      port: 8080 # The port that the service is running on in the cluster
+      port: 8088 # The port that the service is running on in the cluster
       targetPort: 8080 # The port exposed by the service
 #      nodePort: 30001
 #  type: NodePort

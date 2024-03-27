@@ -26,7 +26,7 @@ management:
 
 spring:
   config:
-    import: optional:configserver:http://localhost:8099
+    import: optional:configserver:http://torra-tudo-config-server-service:8083
   application:
     name: gateway
   main:
