@@ -48,8 +48,8 @@ pipeline {
                 script {
                     sh "##############################################START-DOCKER-BUILD##############################################"
                     sh "docker build -t ${project_name} ./${project_name}/"
-                    sh "docker tag ${project_name} ${docker_hub_profile}/torra-${project_name}:${tag}"
-                    sh "echo imagename: ${docker_hub_profile}/torra-${project_name}:${tag}"
+                    sh "docker tag ${project_name} ${docker_hub_profile}/${project_name}:${tag}"
+                    sh "echo imagename: ${docker_hub_profile}/${project_name}:${tag}"
                     sh "##############################################END-DOCKER-BUILD##############################################"
                 }
             }
@@ -60,7 +60,7 @@ pipeline {
                     sh "##############################################START-DOCKER-PUSH##############################################"
                     withCredentials([string(credentialsId: 'dockerhubpwp', variable: 'dockerhubpwp')]) {
                         sh "docker login -u ${docker_hub_profile} -p ${dockerhubpwp}"
-                        sh "docker push ${docker_hub_profile}/torra-${project_name}:${tag}"
+                        sh "docker push ${docker_hub_profile}/${project_name}:${tag}"
                     }
                     sh "##############################################END-DOCKER-PUSH##############################################"
                 }

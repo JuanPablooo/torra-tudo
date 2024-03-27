@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: config-server-deployment
+  name: torra-tudo-config-server-deployment
   labels:
-   app: config-server-deployment
+   app: torra-tudo-config-server-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: config-server-deployment
+      app: torra-tudo-config-server-deployment
   template:
     metadata:
       labels:
-        app: config-server-deployment
+        app: torra-tudo-config-server-deployment
     spec:
       containers:
-        - name: torra-config-server
-          image: 'juanpablooo/torra-config-server:VERSION_IMAGE_TO_BE_REPLACED'
+        - name: torra-tudo-config-server
+          image: 'juanpablooo/torra-tudo-config-server:VERSION_IMAGE_TO_BE_REPLACED'
           ports:
 #            - port: 8082
             - containerPort:  8080
@@ -25,10 +25,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: config-server-service
+  name: torra-tudo-config-server-service
 spec:
   selector:
-    app: config-server-deployment
+    app: torra-tudo-config-server-deployment
 #  type: LoadBalancer
   type: ClusterIP
   ports:
@@ -44,14 +44,14 @@ spec:
 #apiVersion: networking.k8s.io/v1beta1
 #kind: Ingress
 #metadata:
-#  name: config-server-ingress
+#  name: torra-tudo-config-server-ingress
 #spec:
 #  rules:
-#  - host: config-server.com
+#  - host: torra-tudo-config-server.com
 #    http:
 #      paths:
 #      - backend:
-#          serviceName: config-server-service
+#          serviceName: torra-tudo-config-server-service
 #          servicePort: 8081
 
 
