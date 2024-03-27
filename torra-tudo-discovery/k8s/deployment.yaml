@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: discovery-deployment
+  name: torra-tudo-discovery-deployment
   labels:
-   app: discovery-deployment
+   app: torra-tudo-discovery-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: discovery-deployment
+      app: torra-tudo-discovery-deployment
   template:
     metadata:
       labels:
-        app: discovery-deployment
+        app: torra-tudo-discovery-deployment
     spec:
       containers:
-        - name: torra-discovery
-          image: 'juanpablooo/torra-discovery:VERSION_IMAGE_TO_BE_REPLACED'
+        - name: torra-tudo-discovery
+          image: 'juanpablooo/torra-tudo-discovery:VERSION_IMAGE_TO_BE_REPLACED'
           ports:
 #            - port: 8082
             - containerPort:  8080
@@ -25,10 +25,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: discovery-service
+  name: torra-tudo-discovery-service
 spec:
   selector:
-    app: discovery-deployment
+    app: torra-tudo-discovery-deployment
 #  type: LoadBalancer
   type: ClusterIP
   ports:
@@ -44,14 +44,14 @@ spec:
 #apiVersion: networking.k8s.io/v1beta1
 #kind: Ingress
 #metadata:
-#  name: discovery-ingress
+#  name: torra-tudo-discovery-ingress
 #spec:
 #  rules:
-#  - host: discovery.com
+#  - host: torra-tudo-discovery.com
 #    http:
 #      paths:
 #      - backend:
-#          serviceName: discovery-service
+#          serviceName: torra-tudo-discovery-service
 #          servicePort: 8081
 
 

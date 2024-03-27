@@ -9,7 +9,7 @@
 		<relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
 	</parent>
 
-	<artifactId>discovery</artifactId>
+	<artifactId>torra-tudo-discovery</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>discovery</name>
 	<description>service discovery</description>
